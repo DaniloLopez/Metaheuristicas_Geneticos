@@ -2,7 +2,6 @@ package funciones;
 
 import individuo.Individuo;
 import individuo.Individuo_funcion;
-import java.util.Arrays;
 
 /**
  *

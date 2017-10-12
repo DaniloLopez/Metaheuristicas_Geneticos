@@ -27,7 +27,7 @@ public class MutarFuncion implements OperadorMutacion{
     }
 
     private Double[] gaussiana(Double[] v, double p, double min, double max) {
-        double rnd = 0;
+        double rnd;
         double n = 0;
         double o2 = calcularVarianza2(v);
         for (int i = 0; i < v.length; i++) {

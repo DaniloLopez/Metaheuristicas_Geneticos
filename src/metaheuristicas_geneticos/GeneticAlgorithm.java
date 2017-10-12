@@ -93,7 +93,7 @@ public class GeneticAlgorithm {
             }
             
             for (int i = 0; i < (cant_poblacion - elitismo)/2; i++) {                
-                Individuo padre = oper_seleccion_padre.seleccion(pob_inicial, 2);
+                Individuo padre = oper_seleccion_padre.seleccion(pob_inicial, 2);                
                 Individuo madre = oper_seleccion_madre.seleccion(pob_inicial, 2);                
                 ArrayList<Individuo> hijosCruze = oper_cruce.cruzar(padre, madre);
                 hijosCruze = oper_mutacion.mutar((ArrayList<Individuo>)hijosCruze, probabilidad, 2);

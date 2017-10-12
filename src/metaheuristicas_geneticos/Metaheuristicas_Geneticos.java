@@ -16,7 +16,6 @@ import Operadores_funcion.SolucionFuncion;
 import funciones.*;
 import individuo.Individuo;
 import individuo.Individuo_funcion;
-import individuo.Individuo_mochila;
 import java.util.ArrayList;
 import java.util.Arrays;
 

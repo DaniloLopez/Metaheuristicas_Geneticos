@@ -14,8 +14,7 @@ import individuo.Individuo_funcion;
  */
 public class Ackley extends Funcion {
     
-    private double minEsperado = 0.1;
-    private Double valorminimoEsperado = 0.1;
+    private double minEsperado = 0.1;    
 
     public Ackley(int min, int max) {
         super(min, max, "ackley");
@@ -24,7 +23,7 @@ public class Ackley extends Funcion {
     @Override
     public boolean validateIdealSolution(Individuo s) {
         //System.out.println("solucion: "+s.getFitness()+"  minEsperado:" + valorminimoEsperado);
-        return (s.getFitness() <= valorminimoEsperado);
+        return (s.getFitness() <= minEsperado);
     }
 
     @Override
