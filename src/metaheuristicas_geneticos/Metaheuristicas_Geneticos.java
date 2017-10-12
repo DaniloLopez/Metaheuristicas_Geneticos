@@ -38,78 +38,19 @@ public class Metaheuristicas_Geneticos {
         
         //correr la implementacion para algoritmos geneticos orientado al problema de optimizacion de funciones
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        geneticoFuncion();
+        Main_Funciones mf = new Main_Funciones();        
+        mf.geneticoFuncion();
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         
         
         //correr la implementacion para algoritmos geneticos orientado al problema de la mochila
         //======================================================================                
-        //geneticoMochila();
+        Main_Mochila mm = new Main_Mochila();
+        mm.geneticoMochila();
         //======================================================================
         
-    }//fin clase main    
-    
-    
-    /**
-     * implementacion algoritmo genetico con el problema de optimizacion de funciones
-     */
-    public static void geneticoFuncion(){
-        ArrayList<GeneticAlgorithm> algoritmos = new ArrayList<>();
-        int dimensiones = 10;
-        int EFOs        = 5000;                                 
-        int tamanioPob  = 20;
-        int elitismo    = 2;        
-        
-        //instancias de la clase funcion
-        Sphere esfera           = new Sphere(-100, 100, radio);
-        Step step               = new Step(-100,100, radio);
-        Schwefel schwefel       = new Schwefel(-100,100);
-        Rastrigin rastrigin     = new Rastrigin(-5.12, 5.12);
-        Griewank grienwank      = new Griewank(-600, 600);
-        Ackley ackley           = new Ackley(-32, 32 );
-                
-        algoritmos.add(new GeneticAlgorithm(esfera, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(),new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(step, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(schwefel, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(rastrigin, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(grienwank, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(ackley, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo)); 
-        
-        for (GeneticAlgorithm alg : algoritmos) {
-            Individuo res = alg.correr(5, 2, EFOs);
-            System.out.println("+++++ encontrado "+alg.getFuncion().getNombreFuncion() + ". res "+ Arrays.toString(((Individuo_funcion)res).getCromosoma()) +"  fitness: " + res.getFitness());
-        }
-    }
-    
-    /**
-     * implementacion de algoritmo genetico para el problema de la mochila
-     */
-    public static void geneticoMochila(){
-        String nombreArchivo = "f1.txt";
-        LeerArchivoMochila lam = new LeerArchivoMochila();
-        Mochila moc = lam.leerArchivo(nombreArchivo);
-        
-        
-        System.out.println(moc.toString());
-    }
-    
+    }//fin clase main                          
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
