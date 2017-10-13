@@ -5,20 +5,6 @@
  */
 package metaheuristicas_geneticos;
 
-import Archivo.LeerArchivoMochila;
-import Operadores_Mochila.Mochila;
-import Operadores_en_Comun.CruceTwoPoint;
-import Operadores_en_Comun.SeleccionTorneo;
-import Operadores_funcion.EvaluarFuncion;
-import Operadores_funcion.GenerarPoblacionFuncion;
-import Operadores_funcion.MutarFuncion;
-import Operadores_funcion.SolucionFuncion;
-import funciones.*;
-import individuo.Individuo;
-import individuo.Individuo_funcion;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  *
  * @author Danilo
@@ -39,7 +25,7 @@ public class Metaheuristicas_Geneticos {
         //correr la implementacion para algoritmos geneticos orientado al problema de optimizacion de funciones
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Main_Funciones mf = new Main_Funciones();        
-        mf.geneticoFuncion();
+        //mf.geneticoFuncion();
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         
         

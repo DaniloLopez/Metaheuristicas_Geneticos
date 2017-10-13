@@ -21,6 +21,9 @@ public class CruceTwoPoint<T> implements OperadorCruce{
         
         ArrayList<Individuo> hijos = new ArrayList<>();
         Aleatorio al = new Aleatorio(9);
+        if(vector1.length == 0)
+            System.out.println("");
+        
         int c = al.aleatorioEntero(0, vector1.length-1);
         int d;
         do{

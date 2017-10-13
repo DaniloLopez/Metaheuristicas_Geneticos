@@ -3,10 +3,12 @@ package metaheuristicas_geneticos;
 import Operadores_en_Comun.CruceTwoPoint;
 import Operadores_en_Comun.SeleccionTorneo;
 import Operadores_funcion.EvaluarFuncion;
+import Operadores_funcion.EvaluarMejorIndividuoFuncion;
 import Operadores_funcion.GenerarPoblacionFuncion;
 import Operadores_funcion.MutarFuncion;
 import Operadores_funcion.SolucionFuncion;
 import funciones.Ackley;
+import funciones.Funcion;
 import funciones.Griewank;
 import funciones.Rastrigin;
 import funciones.Schwefel;
@@ -44,16 +46,16 @@ public class Main_Funciones {
         Griewank grienwank      = new Griewank(-600, 600);
         Ackley ackley           = new Ackley(-32, 32 );
                 
-        algoritmos.add(new GeneticAlgorithm(esfera, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(),new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(step, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(schwefel, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(rastrigin, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(grienwank, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
-        algoritmos.add(new GeneticAlgorithm(ackley, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(), tamanioPob, dimensiones, 2, prob, elitismo)); 
+        algoritmos.add(new GeneticAlgorithm(esfera, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(),new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
+        algoritmos.add(new GeneticAlgorithm(step, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
+        algoritmos.add(new GeneticAlgorithm(schwefel, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
+        algoritmos.add(new GeneticAlgorithm(rastrigin, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
+        algoritmos.add(new GeneticAlgorithm(grienwank, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo));
+        algoritmos.add(new GeneticAlgorithm(ackley, new GenerarPoblacionFuncion(), new EvaluarFuncion(), new SeleccionTorneo(), new SeleccionTorneo(), new CruceTwoPoint(), new MutarFuncion(), new SolucionFuncion(),new  EvaluarMejorIndividuoFuncion(), tamanioPob, dimensiones, 2, prob, elitismo)); 
         
         for (GeneticAlgorithm alg : algoritmos) {
             Individuo res = alg.correr(5, 2, EFOs);
-            System.out.println("+++++ encontrado "+alg.getFuncion().getNombreFuncion() + ". res "+ Arrays.toString(((Individuo_funcion)res).getCromosoma()) +"  fitness: " + res.getFitness());
+            System.out.println("+++++ encontrado "+((Funcion)(alg.getFuncion())).getNombreFuncion() + ". res "+ Arrays.toString(((Individuo_funcion)res).getCromosoma()) +"  fitness: " + res.getFitness());
         }
     }
 }

@@ -5,7 +5,6 @@
  */
 package Interfaces_Operador_Genetico;
 
-import funciones.Funcion;
 import individuo.Individuo;
 import java.util.ArrayList;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
  * 
  * @author Danilo
  */
-public interface OperadorGenPoblacion {
+public interface OperadorGenPoblacion <T> {
     
-    public void generarPoblacion(  int longitud, int tamanio_poblacion, ArrayList<Individuo> PoblacionInicial, Funcion funcion);        
+    public void generarPoblacion(  int longitud, int tamanio_poblacion, ArrayList<Individuo> PoblacionInicial, T superC);        
 }

@@ -1,8 +1,6 @@
 package Archivo;
 
-import Archivo.Archivo;
 import Operadores_Mochila.Mochila;
-import java.util.ArrayList;
 
 /**
  *
@@ -19,7 +17,7 @@ public class LeerArchivoMochila {
     
     public Mochila leerArchivo(String ruta){                
         mochila = new Mochila();
-        String linea = "";
+        String linea;
         file.abrirArchivo(ruta, false, false);
         crearMochila(file.leerArchivo());        
         while(file.puedeLeer()){
@@ -42,30 +40,28 @@ public class LeerArchivoMochila {
         }
     }
       
-    private boolean adicionarParametros(String linea){
-        try {
+    private boolean adicionarParametros(String linea){        
+        try {           
             linea=linea.trim();
-            String[] valores = linea.split(" ");
+            String[] valores = linea.split(" ");            
             switch(valores.length){
                 case 1:
-                    adicionarOBJ(valores);
-                    return true;                    
+                    //adicionar objetivo                    
+                    mochila.setObj(Double.parseDouble(valores[0].replace(',', '.')));
+                    return true;
                 case 2:
-                    return adicionarArticulo(valores);                    
+                    //adicionar articulo
+                    return mochila.addArticulo(Double.parseDouble(valores[0].replace(',', '.')), Double.parseDouble(valores[1].replace(',', '.')));
                 default:
-                    adicionarSolucion(valores);
-                    return true;                    
-            }                                                   
+                    adicionarSolucion(valores);                    
+                    return true;
+            }                      
         } catch (Exception e) {
             System.out.println("error en el metodo adicionarArticulo() de la clase LeerArchivoMochila");
             return false;
         }
         
     }               
-
-    private void adicionarOBJ(String[] valores) {
-        mochila.setObj(Double.parseDouble(valores[0]));
-    }
 
     private void adicionarSolucion(String[] valores) {
         int tam = valores.length;
@@ -79,12 +75,4 @@ public class LeerArchivoMochila {
         }            
         mochila.setSolucion(datos);
     }
-    
-
-    private boolean adicionarArticulo(String[] valores) {
-        return mochila.addArticulo(Double.parseDouble(valores[0]), Double.parseDouble(valores[1]));
-    }
-
-  
-     
 }

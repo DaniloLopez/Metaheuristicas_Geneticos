@@ -3,6 +3,7 @@ package metaheuristicas_geneticos;
 import individuo.Individuo;
 import Interfaces_Operador_Genetico.OperadorCruce;
 import Interfaces_Operador_Genetico.OperadorEvaluacion;
+import Interfaces_Operador_Genetico.OperadorEvaluarMejorIndividuo;
 import Interfaces_Operador_Genetico.OperadorMutacion;
 import Interfaces_Operador_Genetico.OperadorSeleccion;
 import Interfaces_Operador_Genetico.OperadorSolucion;
@@ -15,7 +16,7 @@ import funciones.Funcion;
  *
  * @author Unicauca
  */
-public class GeneticAlgorithm {
+public class GeneticAlgorithm <T>{
 
     //variables de operaciones geneticas
     OperadorGenPoblacion oper_poblacion;
@@ -25,6 +26,7 @@ public class GeneticAlgorithm {
     OperadorCruce oper_cruce;
     OperadorMutacion oper_mutacion;    
     OperadorSolucion oper_solucion;
+    OperadorEvaluarMejorIndividuo oper_evaluarIndividuo;
                 
     //variables de entrada
     int cant_poblacion;
@@ -35,16 +37,16 @@ public class GeneticAlgorithm {
             
     //poblacion para el algoritmo genetico
     ArrayList<Individuo> pob_inicial;
-    Funcion obj_funcion;
+    T obj_helper;
     private int iteraciones;
          
-    public GeneticAlgorithm(Funcion funcion,
+    public GeneticAlgorithm(T funcion,
                     OperadorGenPoblacion poblacion, OperadorEvaluacion evaluacion, 
                     OperadorSeleccion seleccionP, OperadorSeleccion seleccionM, OperadorCruce cruce, 
-                    OperadorMutacion mutacion, OperadorSolucion solucion, 
+                    OperadorMutacion mutacion, OperadorSolucion solucion, OperadorEvaluarMejorIndividuo mejorInd,
                     int cant_poblacion, int long_individuo, int num_generaciones, double probabilidad, int elitismo){
         
-        this.obj_funcion    = funcion;
+        this.obj_helper    = funcion;
         
         
         oper_poblacion  = poblacion;
@@ -54,6 +56,7 @@ public class GeneticAlgorithm {
         oper_solucion   = solucion;
         oper_seleccion_padre = seleccionP;
         oper_seleccion_madre = seleccionM;
+        oper_evaluarIndividuo = mejorInd;
         
         this.cant_poblacion     = cant_poblacion;
         this.long_individuo     = long_individuo;
@@ -75,14 +78,17 @@ public class GeneticAlgorithm {
         
         this.pob_inicial    = new ArrayList<>();
         //generar poblacion
-        oper_poblacion.generarPoblacion(long_individuo, cant_poblacion, pob_inicial, obj_funcion);                
+        oper_poblacion.generarPoblacion(long_individuo, cant_poblacion, pob_inicial, obj_helper);     
+        
         Individuo best = null;
                 
         do{
             //evaluar cada individuo y fijar fitnes
             oper_evaluacion.EvaluarPoblacion(long_individuo, cant_poblacion, pob_inicial);            
+            if(((T[])pob_inicial.get(0).getCromosoma()).length == 0)
+                    System.out.println("");
             for (Individuo ind : pob_inicial) {
-                if(best == null || best.getFitness() > ind.getFitness()){
+                if(best == null || oper_evaluarIndividuo.evaluar(best, ind)){
                     best = ind;
                 }
             }
@@ -93,7 +99,9 @@ public class GeneticAlgorithm {
             }
             
             for (int i = 0; i < (cant_poblacion - elitismo)/2; i++) {                
-                Individuo padre = oper_seleccion_padre.seleccion(pob_inicial, 2);                
+                Individuo padre = oper_seleccion_padre.seleccion(pob_inicial, 2);         
+                if(((T[])padre.getCromosoma()).length == 0)
+                    System.out.println("");
                 Individuo madre = oper_seleccion_madre.seleccion(pob_inicial, 2);                
                 ArrayList<Individuo> hijosCruze = oper_cruce.cruzar(padre, madre);
                 hijosCruze = oper_mutacion.mutar((ArrayList<Individuo>)hijosCruze, probabilidad, 2);
@@ -107,7 +115,7 @@ public class GeneticAlgorithm {
                 return solucion;
             }                                    
             EFOs--;            
-            //System.out.println("Efo: " + EFOs +" alg: " + obj_funcion.getNombreFuncion());
+            //System.out.println("Efo: " + EFOs +" alg: " + obj_helper.getNombreFuncion());
         }while(EFOs != 0);
         
         return best;
@@ -126,7 +134,7 @@ public class GeneticAlgorithm {
     }
     
     
-    public Funcion getFuncion(){
-        return obj_funcion;
+    public Object getFuncion(){
+        return obj_helper;
     }
 }

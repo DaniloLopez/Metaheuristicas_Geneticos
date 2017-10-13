@@ -19,6 +19,10 @@ public class Articulo {
         this.peso = 0;
     }
 
+    /**
+     * retorna el valor del articulo
+     * @return valor del articulo
+     */
     public double getValor() {
         return valor;
     }

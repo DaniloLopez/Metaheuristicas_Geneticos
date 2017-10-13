@@ -138,12 +138,8 @@ public class Individuo_funcion  implements Cloneable, Individuo{
 
     @Override
     public void setCromosoma(Object[] cromosoma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void setCromosoma(Double[] cromosoma) {
-        this.cromosoma = cromosoma;
-    }
+        this.cromosoma = (Double[])cromosoma;
+    }        
 
     @Override
     public double getFitness() {
@@ -152,7 +148,7 @@ public class Individuo_funcion  implements Cloneable, Individuo{
 
     @Override
     public void setFitness(Double fitness) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.fitness = fitness;
     }           
 
     public double getPaso() {

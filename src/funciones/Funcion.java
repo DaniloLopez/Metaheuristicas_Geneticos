@@ -7,7 +7,7 @@ import individuo.Individuo;
  * @author Danilo
  */
 public abstract class Funcion {
-    
+        
     private double min;
     private double max;
     private String nombreFuncion;    

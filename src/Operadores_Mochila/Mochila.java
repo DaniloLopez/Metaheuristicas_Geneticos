@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Unicauca
  */
-public class Mochila {
+public class Mochila implements Cloneable {
     
     double n; //numero de item
     double k; //capacidad
@@ -55,6 +55,10 @@ public class Mochila {
         this.articulos = new ArrayList<>();
     }
 
+    /**
+     * retorna el numero de items diferentes que pueden ir en la mochila
+     * @return n
+     */
     public double getN() {
         return n;
     }
@@ -63,6 +67,10 @@ public class Mochila {
         this.n = n;
     }
 
+    /**
+     * retorna la capacidad de la mochila
+     * @return k
+     */
     public double getK() {
         return k;
     }
@@ -124,7 +132,7 @@ public class Mochila {
         }
             
     }
-
+    
     @Override
     public String toString() {
         return "Mochila{" + "n=" + n + ", k=" + k + ", obj=" + obj + ", solucion=" + Arrays.toString(solucion) + ", articulos=" + articulos + '}';
