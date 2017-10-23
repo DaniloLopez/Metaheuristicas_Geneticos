@@ -5,6 +5,8 @@
  */
 package metaheuristicas_geneticos;
 
+import PSO.PSOProcess;
+
 /**
  *
  * @author Danilo
@@ -33,6 +35,12 @@ public class Metaheuristicas_Geneticos {
         //======================================================================                
         Main_Mochila mm = new Main_Mochila();
         mm.geneticoMochila();
+        //======================================================================
+        System.out.println("\n");
+        //correr la implementacion para algoritmo PSO orientado al problema de la mochila
+        //======================================================================                
+        Main_PSO pso = new Main_PSO();
+        pso.geneticoPSO();
         //======================================================================
         
     }//fin clase main                          

@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class EvaluarFuncion implements OperadorEvaluacion{
 
     @Override
-    public void EvaluarPoblacion(int longitudCromosoma, int tamanio_poblacion, ArrayList<Individuo> PoblacionInicial) {
-        for (Individuo individuo : PoblacionInicial) {
+    public void EvaluarPoblacion(int longitudCromosoma, ArrayList<Individuo> PoblacionInicial) {
+        PoblacionInicial.stream().forEach((individuo) -> {
             ((Individuo_funcion)individuo).calcularFitness();
-        }
+        });
      }
 
 }

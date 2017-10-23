@@ -10,7 +10,6 @@ import Interfaces_Operador_Genetico.OperadorSolucion;
 import java.util.ArrayList;
 import java.util.Comparator;
 import Interfaces_Operador_Genetico.OperadorGenPoblacion;
-import funciones.Funcion;
 
 /**
  *
@@ -78,18 +77,18 @@ public class GeneticAlgorithm <T>{
         
         this.pob_inicial    = new ArrayList<>();
         //generar poblacion
-        oper_poblacion.generarPoblacion(long_individuo, cant_poblacion, pob_inicial, obj_helper);     
+        oper_poblacion.generarPoblacion(long_individuo, cant_poblacion, pob_inicial, obj_helper);
         
         Individuo best = null;
                 
         do{
             //evaluar cada individuo y fijar fitnes
-            oper_evaluacion.EvaluarPoblacion(long_individuo, cant_poblacion, pob_inicial);            
+            oper_evaluacion.EvaluarPoblacion(long_individuo, pob_inicial);
             if(((T[])pob_inicial.get(0).getCromosoma()).length == 0)
                     System.out.println("");
             for (Individuo ind : pob_inicial) {
                 if(best == null || oper_evaluarIndividuo.evaluar(best, ind)){
-                    best = ind;
+                    best = ind.copy();
                 }
             }
             ordenarLista(pob_inicial);//ordenar lista para fijar elitismo
@@ -122,14 +121,11 @@ public class GeneticAlgorithm <T>{
     }
     
     public void ordenarLista(ArrayList<Individuo> pob_ini){
-        pob_ini.sort(new Comparator() {
-            @Override
-            public int compare(Object ind1, Object ind2) {
-                if(((Individuo)ind1).getFitness() == ((Individuo)ind2).getFitness())return 0;
-                if(((Individuo)ind1).getFitness() < ((Individuo)ind2).getFitness()) return -1;
-                if(((Individuo)ind1).getFitness() > ((Individuo)ind2).getFitness()) return 1;
-                return 0;
-            }          
+        pob_ini.sort((Object ind1, Object ind2) -> {
+            if(((Individuo)ind1).getFitness() == ((Individuo)ind2).getFitness())return 0;
+            if(((Individuo)ind1).getFitness() < ((Individuo)ind2).getFitness()) return -1;
+            if(((Individuo)ind1).getFitness() > ((Individuo)ind2).getFitness()) return 1;
+            return 0;          
         });
     }
     

@@ -14,6 +14,6 @@ import java.util.ArrayList;
  */
 public interface OperadorEvaluacion {
     
-  public void EvaluarPoblacion(int cantidad_reinas, int tamanio_poblacion, ArrayList<Individuo> PoblacionInicial);
+  public void EvaluarPoblacion(int cantidad_reinas, ArrayList<Individuo> PoblacionInicial);
     
 }

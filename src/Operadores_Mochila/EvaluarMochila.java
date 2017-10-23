@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class EvaluarMochila  implements OperadorEvaluacion{
 
     @Override
-    public void EvaluarPoblacion(int cantidad_reinas, int tamanio_poblacion, ArrayList<Individuo> PoblacionInicial) {
-        for (Individuo individuo : PoblacionInicial) {
+    public void EvaluarPoblacion(int cantidad_reinas, ArrayList<Individuo> PoblacionInicial) {
+        PoblacionInicial.stream().forEach((individuo) -> {
             ((Individuo_mochila)individuo).calcularFitness();
-        }
+        });
     }
 
 }

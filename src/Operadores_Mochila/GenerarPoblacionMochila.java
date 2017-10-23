@@ -2,8 +2,6 @@ package Operadores_Mochila;
 
 import Interfaces_Operador_Genetico.OperadorGenPoblacion;
 import Utilidades.Aleatorio;
-import funciones.Funcion;
-import individuo.Individuo;
 import individuo.Individuo_mochila;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +10,17 @@ import metaheuristicas_geneticos.Metaheuristicas_Geneticos;
 /**
  *
  * @author Unicauca
+ * @param <T>
  */
 public class GenerarPoblacionMochila <T> implements OperadorGenPoblacion{
    
+    /**
+     * genera una poblacion aleatoria para la mochila
+     * @param longitud
+     * @param tamanio_poblacion
+     * @param PoblacionInicial
+     * @param superC
+     */
     @Override
     public void generarPoblacion(int longitud, int tamanio_poblacion, ArrayList PoblacionInicial, Object superC) {
         Mochila mochi = (Mochila)superC;

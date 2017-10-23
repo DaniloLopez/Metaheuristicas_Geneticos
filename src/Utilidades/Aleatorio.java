@@ -26,8 +26,8 @@ public class Aleatorio {
     }
     
     /**
-     * encuentra un numero aleatorio entre o y 1
-     * @param cantDec cantidad de decimales con os que se desea el numero
+     * encuentra un numero aleatorio entre 0 y 1
+     * @param cantDec cantidad de decimales con los que se desea el numero
      * @return numero aleatorio entre 0 a 1
      */
     public double nextAleatorio(int cantDec){
@@ -46,7 +46,7 @@ public class Aleatorio {
      * @param min valor minimo del rango
      * @param max valor maximo del rango
      * @param cantidad tamaño del vector
-     * @param prob probabilidad de colocar un numero dferente de cero
+     * @param prob probabilidad de colocar un numero diferente de cero
      * @param cantDecimales cantidad de decimales a manejar
      * @return numero aleatorio entre min y max
      */    
@@ -85,6 +85,27 @@ public class Aleatorio {
         }
         return  datos;
     }
+    
+    /**
+     * genera un vector de booleanos aleatorios
+     * @param longitud longitud del vector que se desea crear
+     * @return vector con valores booleanos aleatorios
+     */
+    public int[] vectorAleatorioBinarioEntero(int longitud) {        
+        int[] datos = new int[longitud];
+
+        for (int i = 0; i < longitud; i++) {                        
+            if(numAleatorio.nextDouble() <= 0.5){
+                // Numero real aleatorio entre min y max          
+                datos[i] = 0;
+            }else{
+                datos[i] = 1;
+            }                    
+        }
+        return  datos;
+    }
+    
+    
     /**
      * funcion para calcular un vector de numero aleatorios     
      * @param min valor minimo del rango
@@ -101,6 +122,16 @@ public class Aleatorio {
                 vec.add(numAleatorio.nextDouble() * (max - min) + min);                       
         }                        
         return  vec.toArray(new Double[cantidad]);
+    }
+    
+    public double[] vectorAleatorioDecimal2(double min, double max, int cantidad){                        
+        double[] vec= new double[cantidad];
+        //ciclo desde cero hasta cantidad-1
+        for (int i = 0; i < cantidad; i++) {                                    
+                // Numero real aleatorio entre min y max                
+                vec[i] = numAleatorio.nextDouble() * (max - min) + min;
+        }                        
+        return vec;
     }
 
     
@@ -145,11 +176,26 @@ public class Aleatorio {
     public int aleatorioEntero(int min, int max){                
         // Numero entero entre min y max
         if(max - min <= 0)
-        System.out.println("min: " + min + " max: " + max);
+            System.out.println("min: " + min + " max: " + max);
                 
         int al = numAleatorio.nextInt(max-min) + min;                                                
         return al;
-    }       
+    }    
+    
+    /**
+     * funcion para calcular un numero real aleatorio entre un rango de valores
+     * @param min valor minimo del rango
+     * @param max valor maximo del rango
+     * @return  numero aleatorio enntre min y max
+     */
+    public double aleatorioReal(double min, double max){                
+        // Numero entero entre min y max
+        if(max - min <= 0)
+            System.out.println("min: " + min + " max: " + max);
+                
+        double al = numAleatorio.nextDouble() * (max - min) + min;                
+        return al;
+    }
     
     /**
      * redondea el numero de decimales del numero que llega por parametro
